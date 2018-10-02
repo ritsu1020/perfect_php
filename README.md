@@ -26,3 +26,17 @@ class Employee {
 
 ?>
 ```
+_ハイライトされない…_
+
+*htmlでテスト*
+
+```
+<html>
+<head>
+<title>シンタックスハイライトのテスト</title>
+</head>
+<body>
+    <p>test!</p>
+</body>
+</html>
+```
