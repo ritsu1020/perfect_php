@@ -52,4 +52,67 @@ $yamada -> name = '山田';
 
     $yamada -> work();    // 書籍を整理しています
 
+/*
+
+・上記の例ではプロパティはpublicで定義されているためクラスの外側からアクセス可能となる
+・クラスの内側からのみアクセス可能なprivateで定義してみる
+
+*/
+
+class Employee {
+
+      public $name;
+      private $state = '働いている'; // privateなのでクラスの内側からのみアクセス可能
+
+      public function work() {
+
+        echo '書類を整理しています', PHP_EOL;
+
+      }
+}
+
+// よって次の例はエラーとなる
+
+echo $yamada = new Employee();
+
+$yamada -> name = '山田';
+
+echo $yamada -> state, $yamada -> name, 'さん';
+
+$yamada -> work(), PHP_EOL;
+
+// privateを取得するメソッドとprivateを変更するメソッドを実装する
+
+class Employee {
+
+  public $name;
+  private $state = '働いている';     // privateなのでクラスの内側からのみアクセス可能
+
+  public function getState() {    // privateなプロパティを取得するメソッド
+
+    return $this -> state;
+
+  }
+
+  public function setState($state) {    /// privateなプロパティを変更するメソッド
+
+    $this -> state = $state;
+
+  }
+
+  public function work() {
+
+    echo '書類を整理しています', PHP_EOL;
+
+  }
+}
+
+// 上記のようにすることでprivateなプロパティにクラスの内側から$thisを用いてアクセスできる
+// 具体的に変更してみる
+
+$yamada = new Employee();
+$yamada -> name = '山田';
+$yamada -> setState('休憩している');
+echo $yamada->name,'さんは',$yamada->getState(), PHP_EOL;   // 山田さんは休憩している
+
 ?>
