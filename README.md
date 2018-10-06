@@ -17,7 +17,7 @@ _コードを書くときはバッククオート3つ_
 
 class Employee {
 
-      pubric function work() {
+      public function work() {
 
         echo '書籍を整理しています', PHP_EOL;
 
@@ -41,3 +41,4 @@ _ハイライトされない…_
 </html>
 ```
 ***
+#### Markdonwnではsyntax-highlightされない
