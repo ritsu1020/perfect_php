@@ -51,25 +51,51 @@ try {
 // 0による除算が発生した場合に例外を投げる
 function div ($v1, $v2) {
 
-      if ($v2 === 0) {
+    if ($v2 === 0) {
 
-        throw new Exception('arg #2 is zero!');
+          throw new Exception('arg #2 is zero!');    // 例外を投げるコード
 
-      }
-
-      return $v1/$v2;
+    }
+          return $v1/$v2;
 }
 try {
 
-      echo div(1, 2);
-      echo div(1, 0);    // 例外が発生する原因となるコード
-      echo div(2, 1);    // 例外が発生したのでここは処理されずにcatchへ飛ぶ
-
+      echo div (1, 2);
+      echo div (1, 0);    // 例外が発生する原因のコード
+      echo div (2, 2);
 } catch (Exception $e) {
 
-      echo 'Exception! ';
-      echo $e->getMessage();    // Exception! arg #2 is zero!
+      echo 'Exception!'.PHP_EOL;
+      echo $e->getMesssage();
 
 }
+// 例外の拡張
+class ZeroDivisionException extends Exception {
 
+      function div ($v1, $v2) {
+
+            if ($v2 === 0) {
+
+                  throw new ZeroDivisionException('arg #2 is zero!');
+
+            }
+
+            return $v1/$v2;
+      }
+
+      try {
+
+            echo div (1, 2);
+            echo div (1, 0);     // 例外が発生する原因となるコード
+            echo div (2, 2);
+
+      } catch (ZeroDivisionException $e) {
+
+            echo 'Zero Division Exception!';
+            echo $e->getMessage();
+      } catch (Exception $e) {
+
+            echo $e->getMessage();
+      }
+}
 ?>

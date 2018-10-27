@@ -70,4 +70,28 @@ use Project\Module2 as AnotherModule;
 
 $obj = new AnotherModule\someClass();    // new Project\Module2\someClass();と同じ
 
+
+namespace Project\Module;
+// 下記ファイルにクラスが定義されているものとする
+
+require_once 'Foo/Bar/Baz.php';   // Foo\Bar\Bazクラス
+require_once 'Hoge/Fuga.php';     // Hoge\Fugaクラス
+require_once 'Module/Klass/Some.php';    // Module\Klass\Someクラス
+
+use Foo\Bar as BBB;
+use Hoge\Fuga;
+
+class Piyo{}
+
+  $obj1 = new \Directory();    // グロ-バルのDirectoryクラス
+  $obj2 = new BBB\Baz();
+  $obj3 = new Fuga();
+  $obj4 = new Klass\some();
+  $obj5 = new Piyo();
+
+  some_func();    // 実行時にProject\Module\some_func()関数を探し無ければグローバル関数を実行
+
+  BBB\SOME_CONST;    // 実行時にFoo\Bar\SOME_CONST定数に変換される
+  SOME_CONST;    // 実行時にProject\Module\SOME_CONSTがなければグローバルのSOME_CONST定数を評価
+
 ?>
