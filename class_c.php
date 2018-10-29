@@ -267,6 +267,35 @@ class Configure implements Reader, Writer {
       }
 }
 
+class User {
+
+      private $name;
+      public function __construct($name) {
+
+        $this->name = $name;
+      }
+
+      public function sayHi() {
+
+            echo "hi! i am $this->name!";
+
+      }
+}
+
+class AdminUser extends User {
+
+      public function sayHello() {
+
+            echo "Hello! from Admin";
+      }
+}
+
+$tom = new User('Tom');
+$tom->sayHi();                        // hi! i am Tom!
+$tom->name;                           // privateなのでクラスの外側からはアクセス不可
+$steve = new AdminUser('Steve');
+$steve->sayHi();                      // hi! i am Steve!
+$steve->sayHello();                   // Hello! from Admin
 
 
 ?>
