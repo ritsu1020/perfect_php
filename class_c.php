@@ -297,5 +297,43 @@ $steve = new AdminUser('Steve');
 $steve->sayHi();                      // hi! i am Steve!
 $steve->sayHello();                   // Hello! from Admin
 
+// 抽象クラス
+abstract class BaseUser {
 
+      public $name;
+      abstract public function sayHi();
+}
+
+class User extends BaseUser {
+
+      public function sayHi() {
+
+            echo 'Hello! From User';
+      }
+}
+
+// interface 
+interface sayHi {
+
+      public function sayHi();
+}
+
+interface sayHello {
+
+      public function sayHello();
+}
+
+class User implements sayHi, syaHello {
+
+      public function sayHi() {
+
+            echo 'Hi!';
+      }
+
+      public function sayHello() {
+
+            echo 'Hello!';
+
+      }
+}
 ?>
